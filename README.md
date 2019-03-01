@@ -21,6 +21,9 @@ Cool lights for the headboard of your bed!
 - Improve FFT modes
 - Create 3D case model and print it
 
+## Licence
+All code under MIT licence except the files which have another licence specified on them.
+
 ## Thanks
 
 - [Audio Spectrum Analyzer for Android](https://github.com/bewantbe/audio-analyzer-for-android)
