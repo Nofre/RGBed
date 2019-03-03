@@ -155,5 +155,6 @@ public class RGBed implements CreateConnectionTask.CreateConnectionTaskListener 
     public void connectionError(String message) {
         isConnecting = false;
         notificationsInterface.showToast(message);
+        notificationsInterface.showConnectButton();
     }
 }

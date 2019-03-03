@@ -57,6 +57,13 @@ public class MainActivity extends Activity implements NotificationsInterface {
             }
         });
 
+        findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rgbed.connect();
+            }
+        });
+
         if (mBTAdapter.isEnabled()) {
             findViewById(R.id.toggle_bluetooth).setVisibility(View.GONE);
             findViewById(R.id.connecting_text).setVisibility(View.VISIBLE);
@@ -64,9 +71,7 @@ public class MainActivity extends Activity implements NotificationsInterface {
         else {
             findViewById(R.id.toggle_bluetooth).setVisibility(View.VISIBLE);
             findViewById(R.id.connecting_text).setVisibility(View.GONE);
-
         }
-
     }
 
     @Override
@@ -144,6 +149,7 @@ public class MainActivity extends Activity implements NotificationsInterface {
                 findViewById(R.id.connecting_text).setVisibility(show ? View.VISIBLE : View.GONE);
                 findViewById(R.id.toggle_bluetooth).setVisibility(!(mBTAdapter.isEnabled() || show) ? View.VISIBLE : View.GONE);
                 findViewById(R.id.fragment_container).setVisibility(!show ? View.VISIBLE : View.GONE);
+                findViewById(R.id.connect_button).setVisibility(View.GONE);
 
                 if (!show) {
                     if (currentFragment == null || (currentFragment == mainFragment && mainFragment.isHidden())) {
@@ -156,6 +162,20 @@ public class MainActivity extends Activity implements NotificationsInterface {
             }
         });
 
+    }
+
+    @Override
+    public void showConnectButton() {
+        Log.d(TAG, "Show Connect Button");
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.connect_button).setVisibility(mBTAdapter.isEnabled() ? View.VISIBLE : View.GONE);
+                findViewById(R.id.toggle_bluetooth).setVisibility(!mBTAdapter.isEnabled() ? View.VISIBLE : View.GONE);
+                findViewById(R.id.fragment_container).setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

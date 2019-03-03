@@ -5,5 +5,7 @@ public interface NotificationsInterface {
 
     void showConnecting(boolean show);
 
+    void showConnectButton();
+
     void showToast(String msg);
 }
