@@ -86,7 +86,7 @@ public class RGBed implements CreateConnectionTask.CreateConnectionTaskListener 
         return null;
     }
 
-    public void syncTime() {
+    public ClockStatus syncTime() {
         if(mConnectionThread != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
             Calendar cal = Calendar.getInstance();
@@ -96,7 +96,11 @@ public class RGBed implements CreateConnectionTask.CreateConnectionTaskListener 
             int dow = (cal.get(Calendar.DAY_OF_WEEK)+6)%7;
 
             mConnectionThread.write("S" + df.format(cal) + dow  +  ".");
+
+            return requestClockStatus();
         }
+
+        return null;
     }
 
     // Alarms format: 12:30,,08:04,,,,15:32

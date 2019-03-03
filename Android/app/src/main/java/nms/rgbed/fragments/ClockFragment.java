@@ -46,10 +46,13 @@ public class ClockFragment extends Fragment implements AlarmDialog.AlarmDialogLi
         super.onActivityCreated(savedInstanceState);
 
         ClockStatus status = ((MainActivity) getActivity()).getRGBed().requestClockStatus();
-        if (status == null) return;
 
-        if (status.timestamp != null) {
+        if (status != null &&status.timestamp != null) {
             currentTime.setText(status.timestamp);
+        }
+        else {
+            currentTime.setText(R.string.error_current_time);
+            return;
         }
 
         //TODO
@@ -95,7 +98,14 @@ public class ClockFragment extends Fragment implements AlarmDialog.AlarmDialogLi
                 break;
 
             case R.id.sync_time_button:
-                ((MainActivity) getActivity()).getRGBed().syncTime();
+                ClockStatus status = ((MainActivity) getActivity()).getRGBed().syncTime();
+                if (status != null && status.timestamp != null) {
+                    currentTime.setText(status.timestamp);
+                }
+                else {
+                    currentTime.setText(R.string.error_current_time);
+                }
+
                 break;
 
             case R.id.save_alarms_button:
