@@ -19,7 +19,6 @@ Cool lights for the headboard of your bed!
 ## TODO
 - Alarms
 - Improve FFT modes
-- Create 3D case model and print it
 
 ## Licence
 All code under MIT licence except the files which have another licence specified on them.
