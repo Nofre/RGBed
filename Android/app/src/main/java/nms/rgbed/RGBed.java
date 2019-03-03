@@ -153,6 +153,7 @@ public class RGBed implements CreateConnectionTask.CreateConnectionTaskListener 
 
     @Override
     public void connectionError(String message) {
+        isConnecting = false;
         notificationsInterface.showToast(message);
     }
 }
