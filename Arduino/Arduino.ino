@@ -30,36 +30,30 @@ void setCurrentColors() {
   Time t = rtc.getTime();
 
   if (t.hour <= 5) {
-    currentRed = 0x255;
+    currentRed = 0xFF;
     currentGreen = 0x32;
     currentBlue = 0x00;
   }
-  else if (t.hour == 6) {
+  else if (t.hour <= 7) {
     currentRed = 0xFF;
-    currentGreen = 0x6A;
+    currentGreen = 0x32 + (t.hour - 6) * 60 + t.min;
     currentBlue = 0x00;
   }
-  else if (t.hour == 7) {
+  else if (t.hour <= 9) {
     currentRed = 0xFF;
-    currentGreen = 0xA0;
-    currentBlue = 0x17;
+    currentGreen = 0xAA + (((t.hour - 8) * 60 + t.min) >> 1);
+    currentBlue = 0x20 + (t.hour - 8) * 60 + t.min;
   }
-  else if (t.hour == 8) {
+  else if (t.hour == 23) {
     currentRed = 0xFF;
-    currentGreen = 0xB7;
-    currentBlue = 0x24;
+    currentGreen = 0x6E - t.min;
+    currentBlue = 0x00;
   }
-  else if (t.hour >= 22) {
-    currentRed = 160;
-    currentGreen = 120;
-    currentBlue = 120;
-  }
-  else if (t.hour == 21) {
+  else if (t.hour >= 21) {
     currentRed = 0xFF;
-    currentGreen = 0x5C;
-    currentBlue = 0x17;
+    currentGreen = 0xE6 - ((t.hour - 21) * 60 + t.min);
+    currentBlue = 0x78 - ((t.hour - 21) * 60 + t.min);
   }
-
 }
 
 void setup() {
