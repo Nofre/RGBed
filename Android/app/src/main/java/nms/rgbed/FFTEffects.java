@@ -14,6 +14,7 @@ public class FFTEffects {
 
     private double[] FFTValues;
     private int[] values = new int[30];
+    private double multiplier = 1;
     private int mode = 1;
     private SamplingLoop samplingThread = null;
     private ScheduledExecutorService scheduleTaskExecutor;
@@ -27,6 +28,10 @@ public class FFTEffects {
 
     public void setMode(int mode) {
         this.mode = mode;
+    }
+
+    public void setMultiplier(double multiplier) {
+        this.multiplier = multiplier;
     }
 
     public void updateFFTvalues(final double[] spectrumDB) {
@@ -123,7 +128,7 @@ public class FFTEffects {
         if (d < -72) return 0;
         if (d >= -30) return 23;
 
-        return (int) ((d + 72) * 23 / 42);
+        return (int) ((d + 72) * 23 * multiplier / 42);
     }
 
 

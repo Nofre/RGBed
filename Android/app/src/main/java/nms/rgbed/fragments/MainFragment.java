@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import nms.rgbed.MainActivity;
 import nms.rgbed.R;
@@ -25,6 +26,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     Button bpall;
     Button bp1;
     Button bp2;
+    SeekBar fftMultiplier;
 
     @Nullable
     @Override
@@ -45,6 +47,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         bpall = rootView.findViewById(R.id.bpall);
         bp1 = rootView.findViewById(R.id.bp1);
         bp2 = rootView.findViewById(R.id.bp2);
+        fftMultiplier = rootView.findViewById(R.id.fft_multiplier);
 
         bpall.setOnClickListener(this);
         bp1.setOnClickListener(this);
@@ -57,6 +60,24 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.bm4).setOnClickListener(this);
         rootView.findViewById(R.id.bm5).setOnClickListener(this);
         rootView.findViewById(R.id.bm6).setOnClickListener(this);
+
+        fftMultiplier.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                double multiplier = 1 + progress / 100;
+                ((MainActivity) getActivity()).getFFTeffects().setMultiplier(multiplier);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         colorPicker.subscribe(new ColorObserver() {
             @Override
@@ -95,6 +116,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     colorPicker.setVisibility(View.INVISIBLE);
                     micImg.setVisibility(View.VISIBLE);
                     personLayout.setVisibility(View.INVISIBLE);
+                    fftMultiplier.setVisibility(View.VISIBLE);
                 }
                 else {
                     String[] permissions = new String[1];
@@ -111,6 +133,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     colorPicker.setVisibility(View.INVISIBLE);
                     micImg.setVisibility(View.VISIBLE);
                     personLayout.setVisibility(View.INVISIBLE);
+                    fftMultiplier.setVisibility(View.VISIBLE);
                 }
                 else {
                     String[] permissions = new String[1];
@@ -125,6 +148,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 colorPicker.setVisibility(View.VISIBLE);
                 micImg.setVisibility(View.INVISIBLE);
                 personLayout.setVisibility(View.VISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.bm2:
@@ -133,6 +157,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 colorPicker.setVisibility(View.VISIBLE);
                 micImg.setVisibility(View.INVISIBLE);
                 personLayout.setVisibility(View.INVISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.bm3:
@@ -141,6 +166,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 colorPicker.setVisibility(View.VISIBLE);
                 micImg.setVisibility(View.INVISIBLE);
                 personLayout.setVisibility(View.INVISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.bm4:
@@ -150,6 +176,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 micImg.setVisibility(View.INVISIBLE);
                 bp1.setVisibility(View.INVISIBLE);
                 bp2.setVisibility(View.INVISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.bm5:
@@ -158,6 +185,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 colorPicker.setVisibility(View.INVISIBLE);
                 micImg.setVisibility(View.INVISIBLE);
                 personLayout.setVisibility(View.INVISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.bm6:
@@ -166,6 +194,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 colorPicker.setVisibility(View.INVISIBLE);
                 micImg.setVisibility(View.INVISIBLE);
                 personLayout.setVisibility(View.INVISIBLE);
+                fftMultiplier.setVisibility(View.INVISIBLE);
                 break;
         }
     }
